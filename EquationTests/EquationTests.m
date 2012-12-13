@@ -127,4 +127,41 @@ Equation* e;
 // 実は虚数や0で割り算した場合など，計算結果が実数で表せない値になってしまったとき
 // nan という特殊な数値になります。
 // それでテストがパスしてしまったのですね。
+
+// x^2 + 6x + 5 = 0 をテスト
+// 虚数解 2つの場合。
+- (void)test5
+{
+    e = [[Equation alloc] initWithA:1 b:6 c:5];
+    
+    STAssertEqualsWithAccuracy(-1.0, [e real1], 0.00001, @"real1 error");
+    STAssertEqualsWithAccuracy(-5.0, [e real2], 0.00001, @"real2 error");
+    STAssertEqualsWithAccuracy(0.0, [e imaginary1], 0.00001, @"imaginary1 error");
+    STAssertEqualsWithAccuracy(0.0, [e imaginary2], 0.00001, @"imaginary2 error");
+}
+
+// 4x^2 + 16x + 16 = 0 をテスト
+// 虚数解 2つの場合。
+- (void)test6
+{
+    e = [[Equation alloc] initWithA:4 b:16 c:16];
+    
+    STAssertEqualsWithAccuracy(-2.0, [e real1], 0.00001, @"real1 error");
+    STAssertEqualsWithAccuracy(-2.0, [e real2], 0.00001, @"real2 error");
+    STAssertEqualsWithAccuracy(0.0, [e imaginary1], 0.00001, @"imaginary1 error");
+    STAssertEqualsWithAccuracy(0.0, [e imaginary2], 0.00001, @"imaginary2 error");
+}
+
+// x^2 + 5x + 11 = 0 をテスト
+// 虚数解 2つの場合。
+- (void)test7
+{
+    e = [[Equation alloc] initWithA:1 b:5 c:11];
+    
+    STAssertEqualsWithAccuracy(-2.5, [e real1], 0.00001, @"real1 error");
+    STAssertEqualsWithAccuracy(-2.5, [e real2], 0.00001, @"real2 error");
+    STAssertEqualsWithAccuracy(sqrt(19.0)/2, [e imaginary1], 0.00001, @"imaginary1 error");
+    STAssertEqualsWithAccuracy(-sqrt(19.0)/2, [e imaginary2], 0.00001, @"imaginary2 error");
+}
+
 @end
